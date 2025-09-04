@@ -2,14 +2,25 @@
 #ifndef WHATEVER_H
 # define WHATEVER_H
 
-class whatever
+template <typename T> void swap(T &x, T &y)
 {
-private:
-	/* data */
-public:
-	whatever(/* args */);
-	~whatever();
-};
+	T tmp = x;
+	x = y;
+	y = tmp;
+}
 
+template <typename T> T min(T x, T y)
+{
+	if (x < y)
+		return (x);
+	return (y);
+}
+
+template <typename T> T max(T x, T y)
+{
+	if (x > y)
+		return (x);
+	return (y);
+}
 
 #endif
