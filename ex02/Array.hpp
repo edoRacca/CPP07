@@ -16,54 +16,53 @@ private:
 public:
 	Array()
 	{
-		this->_arr = new T[0]();
+		this->_arr = 0;
 		this->_size = 0;
 	};
 
 	Array(unsigned int n)
 	{
-		this->_size = n;
 		this->_arr = new T[n]();
+		this->_size = n;
 	};
 
 	Array(const Array& a)
 	{
+		this->_arr = new T[a._size]();
 		this->_size = a._size;
-		this->_arr = new T[this->_size]();
 		for (unsigned int i = 0; i < a._size; i++)
 			this->_arr[i] = a._arr[i];
 	};
-
+	
 	~Array()
 	{
-		delete this->_arr;
-	};
-
-	unsigned int size() const
-	{
-		return (this->_size);
+		delete[] this->_arr;
 	};
 
 	Array& operator=(const Array& a)
 	{
 		if (this != &a)
 		{
-			delete this->_arr;
+			this->_arr = new T[a._size]();
 			this->_size = a._size;
-			this->_arr = new T[this->_size]();
 			for (unsigned int i = 0; i < a._size; i++)
 				this->_arr[i] = a._arr[i];
 		}
 		return (*this);
 	};
 
-	T& operator[](unsigned int idx) const
+	T& operator[](unsigned int idx)
 	{
-		if (idx >= this->_size)
-			throw (std::out_of_range("Index out of bound"));	
-		return (this->_arr[idx]);
+		if (idx >= this->_size || idx < 0)
+			throw (std::out_of_range("Index out of bound"));
+		else
+			return (this->_arr[idx]);
 	};
 
+	unsigned int size(void) const
+	{
+		return (this->_size);
+	};
 };
 
 #endif

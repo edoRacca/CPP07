@@ -7,6 +7,7 @@
 int main()
 {
 	try {
+        
         std::cout << "=== Test costruttore vuoto ===" << std::endl;
         Array<int> a1;
         std::cout << "Dimensione a1: " << a1.size() << std::endl;
@@ -48,4 +49,5 @@ int main()
     } catch (const std::exception &e) {
         std::cerr << "Eccezione catturata: " << e.what() << std::endl;
     }
+
 }
